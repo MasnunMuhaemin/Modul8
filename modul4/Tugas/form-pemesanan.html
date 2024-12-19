@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show and Hide Image</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #myImage {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Show and Hide Image Example</h1>
+    <button id="showBtn">Show Image</button>
+    <button id="hideBtn">Hide Image</button>
+    <img id="myImage" src="https://via.placeholder.com/300" alt="Sample Image" style="display: none;">
+    
+    <script>
+        $(document).ready(function() {
+            $("#showBtn").click(function() {
+                $("#myImage").fadeIn();
+            });
+
+            $("#hideBtn").click(function() {
+                $("#myImage").fadeOut();
+            });
+        });
+    </script>
+</body>
+</html>

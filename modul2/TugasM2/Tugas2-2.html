@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Data Kamar dan Fasilitas</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Data Kamar</h1>
+      <form>
+        <label for="idKamar">ID Kamar:</label>
+        <input type="text" id="idKamar" name="idKamar" required />
+
+        <label for="gambarRuangan">Gambar Ruangan:</label>
+        <input
+          type="file"
+          id="gambarRuangan"
+          name="gambarRuangan"
+          accept="image/*"
+        />
+
+        <label for="jenisKamar">Jenis Kamar:</label>
+        <input type="text" id="jenisKamar" name="jenisKamar" required />
+
+        <label for="harga">Harga:</label>
+        <input type="number" id="harga" name="harga" required />
+
+        <label for="fasilitas">Fasilitas:</label>
+        <textarea id="fasilitas" name="fasilitas" required></textarea>
+
+        <button type="submit">Simpan Data Kamar</button>
+      </form>
+
+      <h1>Fasilitas</h1>
+      <form>
+        <label for="idFasilitas">ID:</label>
+        <input type="text" id="idFasilitas" name="idFasilitas" required />
+
+        <label for="namaFasilitas">Nama Fasilitas:</label>
+        <input type="text" id="namaFasilitas" name="namaFasilitas" required />
+
+        <label for="hargaWeekend">Harga Weekend:</label>
+        <input type="number" id="hargaWeekend" name="hargaWeekend" required />
+
+        <label for="hargaWeekday">Harga Weekday:</label>
+        <input type="number" id="hargaWeekday" name="hargaWeekday" required />
+
+        <label for="kuota">Kuota:</label>
+        <input type="number" id="kuota" name="kuota" required />
+
+        <label for="jamBuka">Jam Buka:</label>
+        <input type="time" id="jamBuka" name="jamBuka" required />
+
+        <label for="jamTutup">Jam Tutup:</label>
+        <input type="time" id="jamTutup" name="jamTutup" required />
+
+        <button type="submit">Simpan Fasilitas</button>
+      </form>
+    </div>
+  </body>
+</html>

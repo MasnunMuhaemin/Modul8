@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan</title>
+    <script src="../JS/jquery-3.7.1.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin-inline: 3em;
+        }
+
+        h1 {
+            font-weight: normal;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-block: 2em;
+        }
+
+        label {
+            width: 30%;
+        }
+
+        input,
+        select {
+            border-radius: 5px;
+            border: 0.5px solid gray;
+            height: 40px;
+            width: 100%;
+        }
+
+        .durasi-menginap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .checkbox-sarapan {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-button button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border-width: 0;
+            color: white;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Form Pemesanan</h1>
+
+    <div class="form-group">
+        <label>ID Pemesan:</label>
+        <input type="text" id="id_pemesan" placeholder="Masukkan 16 digit ID">
+    </div>
+
+    <div class="form-group">
+        <label>Nama Pemesan:</label>
+        <input type="text" id="nama_pemesan">
+    </div>
+
+    <div class="form-group">
+        <label>Tipe Kamar:</label>
+        <select id="tipe_kamar">
+            <option value="">--Pilih--</option>
+            <option value="500000">STANDAR - 500,000</option>
+            <option value="750000">DELUXE - 750,000</option>
+            <option value="1000000">FAMILY - 1,000,000</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Harga:</label>
+        <input type="number" id="harga" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Tanggal Pesan:</label>
+        <input type="date" id="tanggal_pesan">
+    </div>
+
+    <div class="form-group">
+        <label>Durasi Menginap:</label>
+        <div class="durasi-menginap">
+            <input type="text" id="durasi">
+            <p>Hari</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Termasuk Breakfast:</label>
+        <div class="checkbox-sarapan">
+            <input type="checkbox" id="breakfast">
+            <label>Ya</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Total Bayar:</label>
+        <input type="text" id="total_bayar" readonly>
+    </div>
+
+    <div class="form-button">
+        <button style="background-color: #2d2dca;" id="simpan">Simpan</button>
+        <button style="background-color: #db662f;" id="batal">Batal</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#tipe_kamar').change(function () {
+                const harga = $(this).val();
+                $('#harga').val(harga);
+            });
+            $('#simpan').click(function (e) {
+                e.preventDefault();
+                let isValid = true;
+                const idPemesan = $('#id_pemesan').val();
+                if (idPemesan.length !== 16 || isNaN(idPemesan)) {
+                    alert('ID Pemesan harus 16 digit angka!');
+                    isValid = false;
+                }
+                const tanggalPesan = $('#tanggal_pesan').val();
+                if (!tanggalPesan) {
+                    alert('Tanggal Pesan harus diisi!');
+                    isValid = false;
+                }
+                const durasi = $('#durasi').val();
+                if (isNaN(durasi) || durasi <= 0) {
+                    alert('Durasi harus berupa angka positif!');
+                    isValid = false;
+                }
+                if (isValid) {
+                    const harga = parseFloat($('#harga').val()) || 0;
+                    const lamaMenginap = parseInt(durasi, 10);
+                    const breakfast = $('#breakfast').is(':checked') ? 80000 : 0;
+                    let total = harga * lamaMenginap + breakfast;
+                    if (lamaMenginap > 3) {
+                        total *= 0.9;
+                    }
+                    $('#total_bayar').val(total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }));
+                    alert('Form berhasil disimpan!');
+                }
+            });
+            $('#batal').click(function () {
+                $('input, select').val('');
+                $('input[type="checkbox"]').prop('checked', false);
+                $('#total_bayar').val('');
+            });
+        });
+    </script>
+</body>
+
+</html>
